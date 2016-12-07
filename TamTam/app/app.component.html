@@ -1,0 +1,25 @@
+﻿<!--<iframe width="320" height="240" src="https://www.youtube.com/embed/Y3Ai-ZOHlNM" frameborder="0" allowfullscreen></iframe>-->
+
+<input type="text" [(ngModel)]="query" />
+
+<input type="button" (click)="search()" value="Search" /> <span *ngIf="isLoadingVisible">Searching......</span>
+
+<div *ngFor='let m of items' style="height: 100%; width: 100%; display: block; border-bottom: solid 1px blue;" >
+    
+
+    <div style="height: 100%; width: 100%; display: block;">
+        <img [src]="fileProxy(m.PosterUrl)" style="max-width: 150px; max-height: 150px; display: inline-block;" />
+        <div style="display: inline-block;">
+            Movie: {{m.MovieTitle}} <br />
+            Year: {{m.Year}} <br />
+            Released: {{m.Released}}
+        </div>          
+    </div>
+
+    <div style="height: 100%; width: 100%; display: block;">
+        <div *ngFor='let v of m.Videos' style="height: 240px; width: 320px; display: inline-block;">
+            <iframe width="320" height="240" [src]="getSanitizedUrl(v.Url)" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+</div>
